@@ -1,0 +1,84 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+    class Employee{
+        public int id;
+        public int importance;
+        public List<Integer> subordinates;
+    }
+public class MyArrayList {
+        public int getImportance(List<Employee>employees,int id){
+         HashMap<Integer,Employee> map = new HashMap<>();
+         for(Employee e: employees){
+             map.put(e.id,e);
+         }
+         return getImportance2(map,id);
+        }
+        private int getImportance2(HashMap<Integer,Employee>map,int id){
+           Employee employee = map.get(id);//用id找到键值
+           int result = employee.importance;//找到上面每一组对应的重要度
+           for (int i = 0;i<employee.subordinates.size();i++){//记录每一个下属的id，用于在下面递归中下属找自己的下属
+               Integer subId = employee.subordinates.get(i);
+               result += getImportance2(map,subId);
+           }
+           return result;
+        }
+}
+
+    public static void main(String[] args) {
+        Collection<String>list = new ArrayList<>();
+        System.out.println(list.size());
+        System.out.println(list.isEmpty());
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        System.out.println(list.size());
+        System.out.println(list.isEmpty());
+        Object[]array = list.toArray();
+        System.out.println(Arrays.toString(array));
+        for (String s : list){
+            System.out.println(s);
+    }
+        list.remove(2);
+        for (String s:list){
+            System.out.println(s);
+        }
+        list.clear();
+        System.out.println(list.size());
+        System.out.println(list.isEmpty());
+		
+		import java.util.*;
+
+public class TestDemo {
+    public static void main(String[] args) {
+        Map<String,String> map = new HashMap<>();
+        map.put("四","肆");
+        map.put("五","伍");
+        System.out.println(map);
+        System.out.println(map.get("四"));
+        System.out.println(map.getOrDefault("四","叁"));
+        map.containsKey("");
+        System.out.println(map.containsKey(""));
+
+        Set<Map.Entry<String,String>>entrySet = map.entrySet();
+        for (Map.Entry<String,String> entry:entrySet) {
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
+    public static void main1(String[] args) {
+        Collection<Integer>collection1 = new ArrayList<>();
+        collection1.add(1);
+        collection1.add(2);
+        collection1.add(3);
+        System.out.println(collection1);
+        System.out.println(collection1.isEmpty());
+        System.out.println(collection1.remove(3));
+        System.out.println(collection1);
+        Collection<String>collection2 = new LinkedList<>();
+        collection2.add("hello");
+    }
+}
